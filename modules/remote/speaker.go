@@ -1,9 +1,10 @@
 package remote
 
 import (
-    "rsc.io/sampler"
+	"rsc.io/sampler"
+	"strings"
 )
 
 func SayHi() string {
-	return sampler.Hello()
+	return strings.Replace(sampler.Hello(), "Hello", "Hi", -1)
 }
