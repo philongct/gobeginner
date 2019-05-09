@@ -6,6 +6,38 @@ import (
 	"time"
 )
 
+// go test -run TestCasting
+func TestCasting(t *testing.T) {
+	// Pass an empty interface and cast to non-pointer
+	change := func(item interface{}, newValue string) {
+		o := item.(Object)
+		o.Value = newValue
+	}
+
+	o := Object{}
+	change(o, "newval")
+	// this won't work
+	// change(&o, "newval")
+
+	fmt.Println(o)
+}
+
+// go test -run TestPointerCasting
+func TestPointerCasting(t *testing.T) {
+	// Pass an empty interface and cast to pointer
+	change := func(item interface{}, newValue string) {
+		o := item.(*Object)
+		o.Value = newValue
+	}
+
+	o := Object{}
+	change(&o, "newval")
+	// this won't work
+	// change(o, "newval")
+
+	fmt.Println(o)
+}
+
 // go test -run TestMapFlattening
 func TestMapFlattening(t *testing.T) {
 	jsonObj := map[string]interface{}{

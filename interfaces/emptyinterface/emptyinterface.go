@@ -35,6 +35,7 @@ func Flatten(m map[string]interface{}, sep string) map[string]interface{} {
 		// the map taken from queue node has only 1 key and 1 value:
 		// the key is the path to the value
 		for k, v := range node {
+			// type check with switch
 			switch vt := v.(type) {
 			case map[string]interface{}:
 				queue = append(queue, processMap(k+sep, vt)...)
@@ -47,4 +48,8 @@ func Flatten(m map[string]interface{}, sep string) map[string]interface{} {
 	}
 
 	return ret
+}
+
+type Object struct {
+	Value string
 }
